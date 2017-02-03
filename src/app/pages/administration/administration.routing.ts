@@ -5,13 +5,7 @@ import { AdministrationComponent } from './administration.component';
   import { PlanComponent } from './components/plan/plan.component';
 
 
-//---------------------------------------------------------------------
-//---------------------------------------------------------------------
-//---------------------------------------------------------------------
-// import { ModuleWithProviders } from '@angular/core';
-//---------------------------------------------------------------------
-//---------------------------------------------------------------------
-//---------------------------------------------------------------------
+import { ModuleWithProviders } from '@angular/core';
 
 
 
@@ -27,12 +21,11 @@ const routes: Routes = [
   }
 ];
 
-
-export const routing = RouterModule.forChild(routes);
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-//export const routing: ModuleWithProviders = RouterModule.forChild(routes);
+export const routing: ModuleWithProviders = RouterModule.forChild(routes);
+  //export const routing = RouterModule.forChild(routes);  //NOTA: no tenia definido el tipo, de resto identico
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------

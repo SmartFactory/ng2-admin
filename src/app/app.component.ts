@@ -9,23 +9,17 @@ import 'style-loader!./theme/initial.scss';
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-    import 'style-loader!primeng/resources/primeng.min.css';
-    import 'style-loader!primeng/resources/themes/cupertino_fmp/theme.css'
-      /*
-      require('style-loader!primeng/resources/themes/cupertino_fmp/theme.css');
-          //## require('style-loader!primeng/resources/themes/cupertino/theme.css');
-          //## require('style-loader!primeng/resources/themes/bootstrap/theme.css');
-          //## require('style-loader!primeng/resources/themes/cruze/theme.css');
-          //## require('style-loader!primeng/resources/themes/omega/theme.css');
-      require('style-loader!primeng/resources/primeng.min.css');
-          // require('../../node_modules/primeng/resources/themes/omega/theme.css');
-          // require('../../node_modules/primeng/resources/primeng.min.css');
-                  // <!--
-                  // <link rel="stylesheet" type="text/css" href="node_modules/primeng/resources/themes/omega/theme.css" />
-                  // <link rel="stylesheet" type="text/css" href="./node_modules/primeng/resources/primeng.min.css" />
-                  // <link rel="stylesheet" type="text/css" href="YOUR_PATH/font-awesome.min.css" />
-                  // -->   
-      */
+import 'style-loader!primeng/resources/primeng.min.css';
+import 'style-loader!primeng/resources/themes/cupertino_fmp/theme.css';
+  // import 'style-loader!primeng/resources/themes/cupertino/theme.css';
+  // import 'style-loader!primeng/resources/themes/bootstrap/theme.css';
+  // import 'style-loader!primeng/resources/themes/cruze/theme.css';
+  // import 'style-loader!primeng/resources/themes/omega/theme.css';
+    // <!--
+    // <link rel="stylesheet" type="text/css" href="node_modules/primeng/resources/themes/omega/theme.css" />
+    // <link rel="stylesheet" type="text/css" href="./node_modules/primeng/resources/primeng.min.css" />
+    // <link rel="stylesheet" type="text/css" href="YOUR_PATH/font-awesome.min.css" />
+    // -->   
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------

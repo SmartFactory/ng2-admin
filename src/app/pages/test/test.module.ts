@@ -51,3 +51,4 @@ import { routing }       from './test.routing';
   ]
 })
 export class TestModule {}
+  // export default class TestModule {}    //NOTA: Si se usa DEFAULT, en el ROUTING no se puede indicar la clase, sino que se debe dejar vacia y viceversa ... { path: 'test', loadChildren: 'app/pages/test/test.module#TestModule' },

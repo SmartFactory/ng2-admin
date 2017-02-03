@@ -301,7 +301,7 @@ export class AdministrationModule { }
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
-    //export default class AdministrationModule { }
+    //export default class AdministrationModule { }       //NOTA: Si se usa DEFAULT, en el ROUTING no se puede indicar la clase, sino que se debe dejar vacia y viceversa ... { path: 'administration', loadChildren: 'app/pages/administration/administration.module#AdministrationModule' }
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
