@@ -24,7 +24,7 @@ export class TargetsTaskComponent implements OnInit {
 
   ngOnInit() {
 
-    console.error("\t" + "\t" + "\t" + "ngOnInit TargetsTaskComponent (filtering Targets for this Task["+this.taskId+"] )");
+    console.log("\t" + "\t" + "\t" + "ngOnInit TargetsTaskComponent (filtering Targets for this Task["+this.taskId+"] )");
 
     this.targets = this._newSharedTargetsTaskService.newSharedTargetArray.filter(target => target.taskId === this.taskId );
 

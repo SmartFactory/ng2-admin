@@ -22,7 +22,7 @@ export class TasksMbfComponent implements OnInit {
 
   ngOnInit() {
 
-    console.error("\t" + "\t" + "ngOnInit TasksMbfComponent (filtering Tasks for this Mbf["+this.mbfId+"] )");
+    console.log("\t" + "\t" + "ngOnInit TasksMbfComponent (filtering Tasks for this Mbf["+this.mbfId+"] )");
 
     this.tasks = this._sharedTasksMbfService.sharedTaskArray.filter(task => task.mbfId === this.mbfId );
 

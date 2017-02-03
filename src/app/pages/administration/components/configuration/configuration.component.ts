@@ -22,7 +22,7 @@ export class ConfigurationComponent {
                     ) { }
 
                     ngOnInit() {
-                      console.error("&&&&&&&&& ngOnInit (getMbfs AND getTasks AND getTargets) PREVIAMENTE");                      
+                      console.warn("--> ngOnInit (getMbfs AND getTasks AND getTargets) PREVIAMENTE");                      
                       
                       this._sharedMbfsCategoryService.fetchSharedMbfArray();
                       this._sharedTasksMbfService.fetchSharedTaskArray();
@@ -43,7 +43,7 @@ export class ConfigurationComponent {
                         // ) { }
 
                         // ngOnInit() {
-                        //   console.error("&&&&&&&&& ngOnInit (getTasks AND getTargets) PREVIAMENTE");                      
+                        //   console.warn("&&&&&&&&& ngOnInit (getTasks AND getTargets) PREVIAMENTE");                      
                           
                         //   this._sharedTasksMbfService.fetchSharedTaskArray();
                         //   this._newSharedTargetsTaskService.fetchNewSharedTargetArray();

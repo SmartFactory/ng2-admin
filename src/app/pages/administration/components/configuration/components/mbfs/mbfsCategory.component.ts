@@ -23,7 +23,7 @@ export class MbfsCategoryComponent implements OnInit {
 
   ngOnInit() {
 
-    console.error("\t" + "ngOnInit MbfsCategoryComponent (filtering Mbfs for this Category["+this.categoryId+"] )");
+    console.log("\t" + "ngOnInit MbfsCategoryComponent (filtering Mbfs for this Category["+this.categoryId+"] )");
 
     this.mbfs = this._sharedMbfsCategoryService.sharedMbfArray.filter(mbf => mbf.categoryId === this.categoryId );
 
