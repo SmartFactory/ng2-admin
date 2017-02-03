@@ -19,7 +19,11 @@ export const routes: Routes = [
     component: Pages,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' }
+      { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
+
+      { path: 'test', loadChildren: 'app/pages/test/test.module#TestModule' },
+      { path: 'administration', loadChildren: 'app/pages/administration/administration.module#AdministrationModule' }
+        // { path: 'administration', loadChildren: () => System.import('./administration/administration.module') }
     ]
   }
 ];
