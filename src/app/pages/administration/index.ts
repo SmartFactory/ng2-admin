@@ -1,1 +1,1 @@
-export * from './admi aaa nistration.component';
+export * from './administration.component';
