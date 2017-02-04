@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { TaskModel } from '../models/task';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class TaskService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'tasks';
-  private tasksUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/tasks';  // URL to web api
+  private tasksUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class TaskService {
 
   delete(id: number): Promise<void> {
     const url = `${this.tasksUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -51,7 +54,7 @@ export class TaskService {
     }
 
     return this.http
-      .post(this.tasksUrl, JSON.stringify(taskPayLoad), {headers: this.headers})
+      .post(this.tasksUrl, JSON.stringify(taskPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -60,7 +63,7 @@ export class TaskService {
       /*
       create(name: string): Promise<TaskModel> {
         return this.http
-          .post(this.tasksUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.tasksUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -71,7 +74,7 @@ export class TaskService {
   update(task: TaskModel): Promise<TaskModel> {
     const url = `${this.tasksUrl}/${task.id}`;
     return this.http
-      .put(url, JSON.stringify(task), {headers: this.headers})
+      .put(url, JSON.stringify(task), {headers: JSONheaders})
       .toPromise()
       .then(() => task)
       .catch(this.handleError);

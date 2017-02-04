@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { OfiTipoPlamModel } from '../models/ofiTipoPlam';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class OfiTipoPlamService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'ofiTipoPlames2';
-  private ofiTipoPlamesUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/ofiTipoPlames';  // URL to web api
+  private ofiTipoPlamesUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class OfiTipoPlamService {
 
   delete(id: number): Promise<void> {
     const url = `${this.ofiTipoPlamesUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -52,7 +55,7 @@ export class OfiTipoPlamService {
     }
 
     return this.http
-      .post(this.ofiTipoPlamesUrl, JSON.stringify(ofiTipoPlamPayLoad), {headers: this.headers})
+      .post(this.ofiTipoPlamesUrl, JSON.stringify(ofiTipoPlamPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -61,7 +64,7 @@ export class OfiTipoPlamService {
       /*
       create(name: string): Promise<OfiTipoPlamModel> {
         return this.http
-          .post(this.ofiTipoPlamesUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.ofiTipoPlamesUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -72,7 +75,7 @@ export class OfiTipoPlamService {
   update(ofiTipoPlam: OfiTipoPlamModel): Promise<OfiTipoPlamModel> {
     const url = `${this.ofiTipoPlamesUrl}/${ofiTipoPlam.id}`;
     return this.http
-      .put(url, JSON.stringify(ofiTipoPlam), {headers: this.headers})
+      .put(url, JSON.stringify(ofiTipoPlam), {headers: JSONheaders})
       .toPromise()
       .then(() => ofiTipoPlam)
       .catch(this.handleError);

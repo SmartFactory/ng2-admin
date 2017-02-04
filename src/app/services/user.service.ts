@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { UserModel } from '../models/user';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class UserService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'users';
-  private usersUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/users';  // URL to web api
+  private usersUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class UserService {
 
   delete(id: number): Promise<void> {
     const url = `${this.usersUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -51,7 +54,7 @@ export class UserService {
     }
 
     return this.http
-      .post(this.usersUrl, JSON.stringify(userPayLoad), {headers: this.headers})
+      .post(this.usersUrl, JSON.stringify(userPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -60,7 +63,7 @@ export class UserService {
       /*
       create(name: string): Promise<UserModel> {
         return this.http
-          .post(this.usersUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.usersUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -71,7 +74,7 @@ export class UserService {
   update(user: UserModel): Promise<UserModel> {
     const url = `${this.usersUrl}/${user.id}`;
     return this.http
-      .put(url, JSON.stringify(user), {headers: this.headers})
+      .put(url, JSON.stringify(user), {headers: JSONheaders})
       .toPromise()
       .then(() => user)
       .catch(this.handleError);

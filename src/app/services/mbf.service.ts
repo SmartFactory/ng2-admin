@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { MbfModel } from '../models/mbf';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class MbfService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'mbfs';
-  private mbfsUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/mbfs';  // URL to web api
+  private mbfsUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class MbfService {
 
   delete(id: number): Promise<void> {
     const url = `${this.mbfsUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -51,7 +54,7 @@ export class MbfService {
     }
 
     return this.http
-      .post(this.mbfsUrl, JSON.stringify(mbfPayLoad), {headers: this.headers})
+      .post(this.mbfsUrl, JSON.stringify(mbfPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -60,7 +63,7 @@ export class MbfService {
       /*
       create(name: string): Promise<MbfModel> {
         return this.http
-          .post(this.mbfsUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.mbfsUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -71,7 +74,7 @@ export class MbfService {
   update(mbf: MbfModel): Promise<MbfModel> {
     const url = `${this.mbfsUrl}/${mbf.id}`;
     return this.http
-      .put(url, JSON.stringify(mbf), {headers: this.headers})
+      .put(url, JSON.stringify(mbf), {headers: JSONheaders})
       .toPromise()
       .then(() => mbf)
       .catch(this.handleError);

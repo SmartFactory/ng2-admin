@@ -3,7 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
     // import { MbfService } from '../../../../../../services/mbf.service';
     import { MbfModel } from '../../../../../../models/mbf';
 
-import { SharedMbfsCategoryService } from '../../../../../../services/shared-mbfs-category.service';
+import { AaaSharedMbfsCategoryService } from '../../../../../../services/aaa-shared-mbfs-category.service';
+  /// import { SharedMbfsCategoryService } from '../../../../../../services/shared-mbfs-category.service';
 
 @Component({
   selector: 'mbfs-category',
@@ -19,7 +20,8 @@ export class MbfsCategoryComponent implements OnInit {
 
   mbfs: Array<MbfModel>;
 
-  constructor(private _sharedMbfsCategoryService: SharedMbfsCategoryService) { }
+  constructor(private _sharedMbfsCategoryService: AaaSharedMbfsCategoryService) { }
+    /// constructor(private _sharedMbfsCategoryService: SharedMbfsCategoryService) { } 
 
   ngOnInit() {
 

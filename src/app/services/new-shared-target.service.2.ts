@@ -7,6 +7,9 @@ import { TargetModel } from '../models/target';
   import { NewTargetService } from './new-target.service';
 
 
+// import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class NewSharedTargetService {
 
@@ -115,7 +118,7 @@ uuuAAA_cachedTargets4Task: TargetModel[];
 
           //   // delete(id: number): Promise<void> {
           //   //   const url = `${this.targetsUrl}/${id}`;
-          //   //   return this.http.delete(url, {headers: this.headers})
+          //   //   return this.http.delete(url, {headers: JSONheaders})
           //   //     .toPromise()
           //   //     .then(() => null)
           //   //     .catch(this.handleError);
@@ -129,7 +132,7 @@ uuuAAA_cachedTargets4Task: TargetModel[];
           //   //   }
 
           //   //   return this.http
-          //   //     .post(this.targetsUrl, JSON.stringify(targetPayLoad), {headers: this.headers})
+          //   //     .post(this.targetsUrl, JSON.stringify(targetPayLoad), {headers: JSONheaders})
           //   //     .toPromise()
           //   //     //.then(res => res.json().data)
           //   //     .then(res => res.json())
@@ -137,7 +140,7 @@ uuuAAA_cachedTargets4Task: TargetModel[];
           //   // }
           //   //     // create(name: string): Promise<TargetModel> {
           //   //     //   return this.http
-          //   //     //     .post(this.targetsUrl, JSON.stringify({name: name}), {headers: this.headers})
+          //   //     //     .post(this.targetsUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           //   //     //     .toPromise()
           //   //     //     //.then(res => res.json().data)
           //   //     //     .then(res => res.json())
@@ -148,7 +151,7 @@ uuuAAA_cachedTargets4Task: TargetModel[];
           //   // update(target: TargetModel): Promise<TargetModel> {
           //   //   const url = `${this.targetsUrl}/${target.id}`;
           //   //   return this.http
-          //   //     .put(url, JSON.stringify(target), {headers: this.headers})
+          //   //     .put(url, JSON.stringify(target), {headers: JSONheaders})
           //   //     .toPromise()
           //   //     .then(() => target)
           //   //     .catch(this.handleError);

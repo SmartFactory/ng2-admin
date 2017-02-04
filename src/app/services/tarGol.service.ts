@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { TarGolModel } from '../models/tarGol';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class TarGolService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'tarGoles2';
-  private tarGolesUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/tarGoles';  // URL to web api
+  private tarGolesUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class TarGolService {
 
   delete(id: number): Promise<void> {
     const url = `${this.tarGolesUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -52,7 +55,7 @@ export class TarGolService {
     }
 
     return this.http
-      .post(this.tarGolesUrl, JSON.stringify(tarGolPayLoad), {headers: this.headers})
+      .post(this.tarGolesUrl, JSON.stringify(tarGolPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -61,7 +64,7 @@ export class TarGolService {
       /*
       create(name: string): Promise<TarGolModel> {
         return this.http
-          .post(this.tarGolesUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.tarGolesUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -72,7 +75,7 @@ export class TarGolService {
   update(tarGol: TarGolModel): Promise<TarGolModel> {
     const url = `${this.tarGolesUrl}/${tarGol.id}`;
     return this.http
-      .put(url, JSON.stringify(tarGol), {headers: this.headers})
+      .put(url, JSON.stringify(tarGol), {headers: JSONheaders})
       .toPromise()
       .then(() => tarGol)
       .catch(this.handleError);

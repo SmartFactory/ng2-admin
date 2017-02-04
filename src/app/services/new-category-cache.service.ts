@@ -7,6 +7,9 @@ import { CategoryModel } from '../models/category';
   import { NewCategoryService } from './new-category.service';
 
 
+// import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class NewCategoryCacheService {
 
@@ -77,7 +80,7 @@ export class NewCategoryCacheService {
 
           //   // delete(id: number): Promise<void> {
           //   //   const url = `${this.categoriesUrl}/${id}`;
-          //   //   return this.http.delete(url, {headers: this.headers})
+          //   //   return this.http.delete(url, {headers: JSONheaders})
           //   //     .toPromise()
           //   //     .then(() => null)
           //   //     .catch(this.handleError);
@@ -91,7 +94,7 @@ export class NewCategoryCacheService {
           //   //   }
 
           //   //   return this.http
-          //   //     .post(this.categoriesUrl, JSON.stringify(categoryPayLoad), {headers: this.headers})
+          //   //     .post(this.categoriesUrl, JSON.stringify(categoryPayLoad), {headers: JSONheaders})
           //   //     .toPromise()
           //   //     //.then(res => res.json().data)
           //   //     .then(res => res.json())
@@ -99,7 +102,7 @@ export class NewCategoryCacheService {
           //   // }
           //   //     // create(name: string): Promise<CategoryModel> {
           //   //     //   return this.http
-          //   //     //     .post(this.categoriesUrl, JSON.stringify({name: name}), {headers: this.headers})
+          //   //     //     .post(this.categoriesUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           //   //     //     .toPromise()
           //   //     //     //.then(res => res.json().data)
           //   //     //     .then(res => res.json())
@@ -110,7 +113,7 @@ export class NewCategoryCacheService {
           //   // update(category: CategoryModel): Promise<CategoryModel> {
           //   //   const url = `${this.categoriesUrl}/${category.id}`;
           //   //   return this.http
-          //   //     .put(url, JSON.stringify(category), {headers: this.headers})
+          //   //     .put(url, JSON.stringify(category), {headers: JSONheaders})
           //   //     .toPromise()
           //   //     .then(() => category)
           //   //     .catch(this.handleError);

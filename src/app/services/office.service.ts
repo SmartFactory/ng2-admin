@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { OfficeModel } from '../models/office';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class OfficeService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'offices';
-  private officesUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/offices';  // URL to web api
+  private officesUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class OfficeService {
 
   delete(id: number): Promise<void> {
     const url = `${this.officesUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -50,7 +53,7 @@ export class OfficeService {
     }
 
     return this.http
-      .post(this.officesUrl, JSON.stringify(officePayLoad), {headers: this.headers})
+      .post(this.officesUrl, JSON.stringify(officePayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -59,7 +62,7 @@ export class OfficeService {
       /*
       create(name: string): Promise<OfficeModel> {
         return this.http
-          .post(this.officesUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.officesUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -70,7 +73,7 @@ export class OfficeService {
   update(office: OfficeModel): Promise<OfficeModel> {
     const url = `${this.officesUrl}/${office.id}`;
     return this.http
-      .put(url, JSON.stringify(office), {headers: this.headers})
+      .put(url, JSON.stringify(office), {headers: JSONheaders})
       .toPromise()
       .then(() => office)
       .catch(this.handleError);

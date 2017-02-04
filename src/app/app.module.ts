@@ -18,10 +18,16 @@ import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
 
+  import { AaaSharedMbfsCategoryService } from './services/aaa-shared-mbfs-category.service';
+  import { MbfService } from './services/mbf.service';
+
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
-  GlobalState
+  GlobalState,
+
+    AaaSharedMbfsCategoryService,
+    MbfService
 ];
 
 export type StoreType = {

@@ -52,6 +52,7 @@ export class BaSidebar {
 
   public menuCollapseStateChange(isCollapsed:boolean):void {
     this.isMenuCollapsed = isCollapsed;
+    console.error("6 EMITIENDO NOTIFICACION de datos NUEVOS para subscripcion (menu.isCollapsed) this.isMenuCollapsed="+this.isMenuCollapsed+"");
     this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
   }
 

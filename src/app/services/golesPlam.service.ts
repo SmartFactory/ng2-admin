@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { GolesPlamModel } from '../models/golesPlam';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class GolesPlamService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'golesPlam';
-  private golesPlamUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/golesPlam';  // URL to web api
+  private golesPlamUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,14 +39,14 @@ export class GolesPlamService {
 
   delete(id: string): Promise<void> {
     const url = `${this.golesPlamUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
   }
     // delete(id: number): Promise<void> {
     //   const url = `${this.golesPlamUrl}/${id}`;
-    //   return this.http.delete(url, {headers: this.headers})
+    //   return this.http.delete(url, {headers: JSONheaders})
     //     .toPromise()
     //     .then(() => null)
     //     .catch(this.handleError);
@@ -60,7 +63,7 @@ export class GolesPlamService {
     }
 
     return this.http
-      .post(this.golesPlamUrl, JSON.stringify(golesPlamPayLoad), {headers: this.headers})
+      .post(this.golesPlamUrl, JSON.stringify(golesPlamPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -69,7 +72,7 @@ export class GolesPlamService {
       /*
       create(name: string): Promise<GolesPlamModel> {
         return this.http
-          .post(this.golesPlamUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.golesPlamUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -80,7 +83,7 @@ export class GolesPlamService {
   update(golesPlam: GolesPlamModel): Promise<GolesPlamModel> {
     const url = `${this.golesPlamUrl}/${golesPlam.id}`;
     return this.http
-      .put(url, JSON.stringify(golesPlam), {headers: this.headers})
+      .put(url, JSON.stringify(golesPlam), {headers: JSONheaders})
       .toPromise()
       .then(() => golesPlam)
       .catch(this.handleError);

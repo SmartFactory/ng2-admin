@@ -151,7 +151,7 @@ import { NewSharedTargetsTaskService } from '../../services/new-shared-targets-t
 
 import { SharedTasksMbfService } from '../../services/shared-tasks-mbf.service';
 
-import { SharedMbfsCategoryService } from '../../services/shared-mbfs-category.service';
+///import { SharedMbfsCategoryService } from '../../services/shared-mbfs-category.service';
 
 
           import { RestoreService } from '../../services/restore.service';
@@ -291,7 +291,7 @@ NewSharedTargetsTaskService,
 
 SharedTasksMbfService,
 
-SharedMbfsCategoryService,
+///SharedMbfsCategoryService,
 
           RestoreService
   ]

@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { PlanTypeModel } from '../models/planType';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class PlanTypeService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'planTypes2';
-  private planTypesUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/planTypes';  // URL to web api
+  private planTypesUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class PlanTypeService {
 
   delete(id: number): Promise<void> {
     const url = `${this.planTypesUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -50,7 +53,7 @@ export class PlanTypeService {
     }
 
     return this.http
-      .post(this.planTypesUrl, JSON.stringify(planTypePayLoad), {headers: this.headers})
+      .post(this.planTypesUrl, JSON.stringify(planTypePayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -59,7 +62,7 @@ export class PlanTypeService {
       /*
       create(name: string): Promise<PlanTypeModel> {
         return this.http
-          .post(this.planTypesUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.planTypesUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -70,7 +73,7 @@ export class PlanTypeService {
   update(planType: PlanTypeModel): Promise<PlanTypeModel> {
     const url = `${this.planTypesUrl}/${planType.id}`;
     return this.http
-      .put(url, JSON.stringify(planType), {headers: this.headers})
+      .put(url, JSON.stringify(planType), {headers: JSONheaders})
       .toPromise()
       .then(() => planType)
       .catch(this.handleError);

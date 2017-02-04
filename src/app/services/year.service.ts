@@ -6,13 +6,15 @@ import 'rxjs/add/operator/toPromise';
 import { YearModel } from '../models/year';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class YearService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'years';
-  private yearsUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/years';  // URL to web api
+  private yearsUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +38,7 @@ export class YearService {
 
   delete(id: number): Promise<void> {
     const url = `${this.yearsUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -49,7 +51,7 @@ export class YearService {
     }
 
     return this.http
-      .post(this.yearsUrl, JSON.stringify(yearPayLoad), {headers: this.headers})
+      .post(this.yearsUrl, JSON.stringify(yearPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -58,7 +60,7 @@ export class YearService {
       /*
       create(name: string): Promise<YearModel> {
         return this.http
-          .post(this.yearsUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.yearsUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -69,7 +71,7 @@ export class YearService {
   update(year: YearModel): Promise<YearModel> {
     const url = `${this.yearsUrl}/${year.id}`;
     return this.http
-      .put(url, JSON.stringify(year), {headers: this.headers})
+      .put(url, JSON.stringify(year), {headers: JSONheaders})
       .toPromise()
       .then(() => year)
       .catch(this.handleError);

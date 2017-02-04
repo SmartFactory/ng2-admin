@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { CategoryModel } from '../models/category';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class NewCategoryService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'new-categories';
-  private categoriesUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/categories';  // URL to web api
+  private categoriesUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class NewCategoryService {
 
   // delete(id: number): Promise<void> {
   //   const url = `${this.categoriesUrl}/${id}`;
-  //   return this.http.delete(url, {headers: this.headers})
+  //   return this.http.delete(url, {headers: JSONheaders})
   //     .toPromise()
   //     .then(() => null)
   //     .catch(this.handleError);
@@ -50,7 +53,7 @@ export class NewCategoryService {
   //   }
 
   //   return this.http
-  //     .post(this.categoriesUrl, JSON.stringify(categoryPayLoad), {headers: this.headers})
+  //     .post(this.categoriesUrl, JSON.stringify(categoryPayLoad), {headers: JSONheaders})
   //     .toPromise()
   //     //.then(res => res.json().data)
   //     .then(res => res.json())
@@ -58,7 +61,7 @@ export class NewCategoryService {
   // }
   //     // create(name: string): Promise<CategoryModel> {
   //     //   return this.http
-  //     //     .post(this.categoriesUrl, JSON.stringify({name: name}), {headers: this.headers})
+  //     //     .post(this.categoriesUrl, JSON.stringify({name: name}), {headers: JSONheaders})
   //     //     .toPromise()
   //     //     //.then(res => res.json().data)
   //     //     .then(res => res.json())
@@ -69,7 +72,7 @@ export class NewCategoryService {
   // update(category: CategoryModel): Promise<CategoryModel> {
   //   const url = `${this.categoriesUrl}/${category.id}`;
   //   return this.http
-  //     .put(url, JSON.stringify(category), {headers: this.headers})
+  //     .put(url, JSON.stringify(category), {headers: JSONheaders})
   //     .toPromise()
   //     .then(() => category)
   //     .catch(this.handleError);

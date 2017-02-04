@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { TeamModel } from '../models/team';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class TeamService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'teams';
-  private teamsUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/teams';  // URL to web api
+  private teamsUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class TeamService {
 
   delete(id: number): Promise<void> {
     const url = `${this.teamsUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -52,7 +55,7 @@ export class TeamService {
     }
 
     return this.http
-      .post(this.teamsUrl, JSON.stringify(teamPayLoad), {headers: this.headers})
+      .post(this.teamsUrl, JSON.stringify(teamPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -61,7 +64,7 @@ export class TeamService {
       /*
       create(name: string): Promise<TeamModel> {
         return this.http
-          .post(this.teamsUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.teamsUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -72,7 +75,7 @@ export class TeamService {
   update(team: TeamModel): Promise<TeamModel> {
     const url = `${this.teamsUrl}/${team.id}`;
     return this.http
-      .put(url, JSON.stringify(team), {headers: this.headers})
+      .put(url, JSON.stringify(team), {headers: JSONheaders})
       .toPromise()
       .then(() => team)
       .catch(this.handleError);

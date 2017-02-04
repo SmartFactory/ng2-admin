@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { TargetModel } from '../models/target';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class NewTargetService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'targets';
-  private targetsUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/targets';  // URL to web api
+  private targetsUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
  
@@ -36,7 +39,7 @@ export class NewTargetService {
 
   // delete(id: number): Promise<void> {
   //   const url = `${this.targetsUrl}/${id}`;
-  //   return this.http.delete(url, {headers: this.headers})
+  //   return this.http.delete(url, {headers: JSONheaders})
   //     .toPromise()
   //     .then(() => null)
   //     .catch(this.handleError);
@@ -51,7 +54,7 @@ export class NewTargetService {
   //   }
 
   //   return this.http
-  //     .post(this.targetsUrl, JSON.stringify(targetPayLoad), {headers: this.headers})
+  //     .post(this.targetsUrl, JSON.stringify(targetPayLoad), {headers: JSONheaders})
   //     .toPromise()
   //     //.then(res => res.json().data)
   //     .then(res => res.json())
@@ -60,7 +63,7 @@ export class NewTargetService {
       
   //     // create(name: string): Promise<TargetModel> {
   //     //   return this.http
-  //     //     .post(this.targetsUrl, JSON.stringify({name: name}), {headers: this.headers})
+  //     //     .post(this.targetsUrl, JSON.stringify({name: name}), {headers: JSONheaders})
   //     //     .toPromise()
   //     //     //.then(res => res.json().data)
   //     //     .then(res => res.json())
@@ -71,7 +74,7 @@ export class NewTargetService {
   // update(target: TargetModel): Promise<TargetModel> {
   //   const url = `${this.targetsUrl}/${target.id}`;
   //   return this.http
-  //     .put(url, JSON.stringify(target), {headers: this.headers})
+  //     .put(url, JSON.stringify(target), {headers: JSONheaders})
   //     .toPromise()
   //     .then(() => target)
   //     .catch(this.handleError);

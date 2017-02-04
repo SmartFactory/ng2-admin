@@ -6,13 +6,16 @@ import 'rxjs/add/operator/toPromise';
 import { GoalModel } from '../models/goal';
 
 
+import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
+
+
 @Injectable()
 export class GoalService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  
 
-  private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
+  // private baseUrl = 'http://587c175506972c1200b215a5.mockapi.io/fmpdashboard/restful/v1';   // private baseUrl = 'http://583e26dc95d29812004e445c.mockapi.io/nuevorest/v1';
   private endpointUrl = 'goals2';
-  private goalsUrl = `${this.baseUrl}/${this.endpointUrl}`; //'api/goals';  // URL to web api
+  private goalsUrl = `${URLServicesEndpoints}/${this.endpointUrl}`;  // URL to web api service endpoint
 
   constructor(private http: Http) { }
 
@@ -36,7 +39,7 @@ export class GoalService {
 
   delete(id: number): Promise<void> {
     const url = `${this.goalsUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {headers: JSONheaders})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -50,7 +53,7 @@ export class GoalService {
     }
 
     return this.http
-      .post(this.goalsUrl, JSON.stringify(goalPayLoad), {headers: this.headers})
+      .post(this.goalsUrl, JSON.stringify(goalPayLoad), {headers: JSONheaders})
       .toPromise()
       //.then(res => res.json().data)
       .then(res => res.json())
@@ -59,7 +62,7 @@ export class GoalService {
       /*
       create(name: string): Promise<GoalModel> {
         return this.http
-          .post(this.goalsUrl, JSON.stringify({name: name}), {headers: this.headers})
+          .post(this.goalsUrl, JSON.stringify({name: name}), {headers: JSONheaders})
           .toPromise()
           //.then(res => res.json().data)
           .then(res => res.json())
@@ -70,7 +73,7 @@ export class GoalService {
   update(goal: GoalModel): Promise<GoalModel> {
     const url = `${this.goalsUrl}/${goal.id}`;
     return this.http
-      .put(url, JSON.stringify(goal), {headers: this.headers})
+      .put(url, JSON.stringify(goal), {headers: JSONheaders})
       .toPromise()
       .then(() => goal)
       .catch(this.handleError);

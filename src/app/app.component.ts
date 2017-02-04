@@ -24,6 +24,11 @@ import 'style-loader!primeng/resources/themes/cupertino_fmp/theme.css';
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 
+import { AaaSharedMbfsCategoryService } from './services/aaa-shared-mbfs-category.service';
+
+
+
+
 
 /*
  * App Component
@@ -45,14 +50,32 @@ export class App {
   constructor(private _state: GlobalState,
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
-              private viewContainerRef: ViewContainerRef) {
+              private viewContainerRef: ViewContainerRef,
+              private _aaaSharedMbfsCategoryService: AaaSharedMbfsCategoryService) {
 
     this._loadImages();
 
+        this._loadMbfs();
+
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
+      console.error("1 RECIBIO evento en SUBSCRIPCION (menu.isCollapsed) this.isMenuCollapsed="+this.isMenuCollapsed+"");
+      console.error("2 RECIBIO evento en SUBSCRIPCION (menu.isCollapsed) isCollapsed="+isCollapsed+"");
       this.isMenuCollapsed = isCollapsed;
     });
   }
+      // constructor(private _state: GlobalState,
+      //             private _imageLoader: BaImageLoaderService,
+      //             private _spinner: BaThemeSpinner,
+      //             private viewContainerRef: ViewContainerRef) {
+
+      //   this._loadImages();
+
+      //   this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
+      //     console.error("1 RECIBIO evento en SUBSCRIPCION (menu.isCollapsed) this.isMenuCollapsed="+this.isMenuCollapsed+"");
+      //     console.error("2 RECIBIO evento en SUBSCRIPCION (menu.isCollapsed) isCollapsed="+isCollapsed+"");
+      //     this.isMenuCollapsed = isCollapsed;
+      //   });
+      // }
 
   public ngAfterViewInit(): void {
     // hide spinner once all loaders are completed
@@ -66,4 +89,40 @@ export class App {
     BaThemePreloader.registerLoader(this._imageLoader.load(layoutPaths.images.root + 'sky-bg.jpg'));
   }
 
+
+        private _loadMbfs(): void {
+          
+          // register some loaders
+          BaThemePreloader.registerLoader( this._aaaSharedMbfsCategoryService.fetchAllMbfs() );
+          
+            /// this._aaaSharedMbfsCategoryService.fetchAllMbfs();
+
+              /// BaThemePreloader.registerLoader(this._imageLoader.load(layoutPaths.images.root + 'sky-bg.jpg'));
+
+        }  
+
 }
+
+/*
+
+          import { SharedMbfsCategoryService } from '../../../../services/shared-mbfs-category.service';
+
+                    constructor(
+                      private _sharedMbfsCategoryService: SharedMbfsCategoryService
+                    ) { }
+
+                    ngOnInit() {
+                      console.warn("--> ngOnInit (getMbfs AND getTasks AND getTargets) PREVIAMENTE");                      
+                      
+                      this._sharedMbfsCategoryService.fetchSharedMbfArray();
+
+                    }
+
+                    get mbfs_n_tasks_n_targets_ready(): boolean {
+                      if( (this._sharedMbfsCategoryService.sharedMbfArray) ){
+                        return true;
+                      }
+                      return false;
+                    }
+
+*/
