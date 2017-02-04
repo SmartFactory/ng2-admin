@@ -20,6 +20,10 @@ import { PagesModule } from './pages/pages.module';
 
   import { AaaSharedMbfsCategoryService } from './services/aaa-shared-mbfs-category.service';
   import { MbfService } from './services/mbf.service';
+    import { SharedTasksMbfService } from './services/shared-tasks-mbf.service';
+    import { TaskService } from './services/task.service';
+      import { NewSharedTargetsTaskService } from './services/new-shared-targets-task.service';
+      import { NewTargetService } from './services/new-target.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -27,7 +31,11 @@ const APP_PROVIDERS = [
   GlobalState,
 
     AaaSharedMbfsCategoryService,
-    MbfService
+    MbfService,
+      SharedTasksMbfService,
+      TaskService,
+        NewSharedTargetsTaskService,
+        NewTargetService
 ];
 
 export type StoreType = {

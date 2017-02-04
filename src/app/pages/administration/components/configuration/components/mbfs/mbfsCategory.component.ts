@@ -17,7 +17,6 @@ export class MbfsCategoryComponent implements OnInit {
 
 //(((((((((((((((((((((())))))))))))))))))))))
 //(((((((((((((((((((((())))))))))))))))))))))
-
   mbfs: Array<MbfModel>;
 
   constructor(private _sharedMbfsCategoryService: AaaSharedMbfsCategoryService) { }

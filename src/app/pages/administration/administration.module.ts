@@ -113,8 +113,8 @@ import { routing }       from './administration.routing';
 
 //SERVICES
           import { CategoryService } from '../../services/category.service';
-          import { MbfService } from '../../services/mbf.service';
-          import { TaskService } from '../../services/task.service';
+///          import { MbfService } from '../../services/mbf.service';
+///          import { TaskService } from '../../services/task.service';
           import { TargetService } from '../../services/target.service';
           import { OfficeService } from '../../services/office.service';
           import { TeamService } from '../../services/team.service';
@@ -145,12 +145,11 @@ import { routing }       from './administration.routing';
 import { NewCategoryService } from '../../services/new-category.service';
 
 
-import { NewTargetService } from '../../services/new-target.service';
-// import { NewSharedTargetService } from '../../services/new-shared-target.service';
-import { NewSharedTargetsTaskService } from '../../services/new-shared-targets-task.service';
+///import { NewTargetService } from '../../services/new-target.service';
 
-import { SharedTasksMbfService } from '../../services/shared-tasks-mbf.service';
-
+///import { NewSharedTargetsTaskService } from '../../services/new-shared-targets-task.service';
+    // import { NewSharedTargetService } from '../../services/new-shared-target.service';
+///import { SharedTasksMbfService } from '../../services/shared-tasks-mbf.service';
 ///import { SharedMbfsCategoryService } from '../../services/shared-mbfs-category.service';
 
 
@@ -258,8 +257,8 @@ import { SharedTasksMbfService } from '../../services/shared-tasks-mbf.service';
   ],
   providers: [
           CategoryService,
-          MbfService,
-          TaskService,
+///          MbfService,
+///          TaskService,
           TargetService,
 
           OfficeService,
@@ -285,12 +284,11 @@ import { SharedTasksMbfService } from '../../services/shared-tasks-mbf.service';
 NewCategoryService,
 
 
-NewTargetService,
-// NewSharedTargetService,
-NewSharedTargetsTaskService,
+///NewTargetService,
 
-SharedTasksMbfService,
-
+///NewSharedTargetsTaskService,
+    // NewSharedTargetService,
+///SharedTasksMbfService,
 ///SharedMbfsCategoryService,
 
           RestoreService

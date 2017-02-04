@@ -40,18 +40,18 @@ export class AaaSharedMbfsCategoryService {
   }
 
 
-  fetchAllMbfs(): Promise<any> {
+        fetchAllMbfs(): Promise<any> {
 
-    console.error("$$$ -->> " + "fetchAllMbfs [[INIT]]");
+          console.error("$$$ -->> " + "fetchAllMbfs [[INIT]]");
 
-     return this._mbfService
-          .getMbfs()
-          .then((data) => {
-            console.error("$$$ -->> " + "fetchAllMbfs [[GOT_data RETURNING_promise]]");
-            this.sharedMbfArray = data;
-          });  
+          return this._mbfService
+                .getMbfs()
+                .then((data) => {
+                  console.error("$$$ -->> " + "fetchAllMbfs [[GOT_data RETURNING_promise]]");
+                  this.sharedMbfArray = data;
+                });  
 
-  }
+        }
 
 
 

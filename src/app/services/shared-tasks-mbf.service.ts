@@ -40,5 +40,17 @@ export class SharedTasksMbfService {
   }
 
 
+        fetchAllTasks(): Promise<any> {
+
+          console.error("$$$ -->> " + "fetchAllTasks [[INIT]]");
+
+          return this._taskService
+              .getTasks()
+              .then((data) => {
+                console.error("$$$ -->> " + "fetchAllTasks [[GOT_data RETURNING_promise]]");
+                this.sharedTaskArray = data;
+              });
+
+        }
 
 }

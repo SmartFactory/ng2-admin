@@ -41,6 +41,22 @@ export class NewSharedTargetsTaskService {
   }
 
 
+        fetchAllTargets(): Promise<any> {
+
+          console.error("$$$ -->> " + "fetchAllTargets [[INIT]]");
+
+          return this._newTargetService
+              .getTargets()
+              .then((data) => {
+                console.error("$$$ -->> " + "fetchAllTargets [[GOT_data RETURNING_promise]]");
+                this.newSharedTargetArray = data;
+              });
+
+        }
+
+
+
+
 // uuuAAA_cachedTargets4Task: TargetModel[];
 
 //   uuuAAA_fetch_CachedTargets4Task(taskId2Find: string): TargetModel[] {

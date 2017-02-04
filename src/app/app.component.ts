@@ -25,6 +25,8 @@ import 'style-loader!primeng/resources/themes/cupertino_fmp/theme.css';
 //---------------------------------------------------------------------
 
 import { AaaSharedMbfsCategoryService } from './services/aaa-shared-mbfs-category.service';
+import { SharedTasksMbfService } from './services/shared-tasks-mbf.service';
+import { NewSharedTargetsTaskService } from './services/new-shared-targets-task.service';
 
 
 
@@ -51,11 +53,13 @@ export class App {
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private _aaaSharedMbfsCategoryService: AaaSharedMbfsCategoryService) {
+              private _aaaSharedMbfsCategoryService: AaaSharedMbfsCategoryService,
+              private _sharedTasksMbfService: SharedTasksMbfService,
+              private _newSharedTargetsTaskService: NewSharedTargetsTaskService) {
 
     this._loadImages();
 
-        this._loadMbfs();
+        this._loadDataFMP();
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       console.error("1 RECIBIO evento en SUBSCRIPCION (menu.isCollapsed) this.isMenuCollapsed="+this.isMenuCollapsed+"");
@@ -90,16 +94,31 @@ export class App {
   }
 
 
-        private _loadMbfs(): void {
-          
-          // register some loaders
-          BaThemePreloader.registerLoader( this._aaaSharedMbfsCategoryService.fetchAllMbfs() );
-          
-            /// this._aaaSharedMbfsCategoryService.fetchAllMbfs();
+        private _loadDataFMP(): void {
 
-              /// BaThemePreloader.registerLoader(this._imageLoader.load(layoutPaths.images.root + 'sky-bg.jpg'));
+          // services to be preloaded before app starts
+          this._loadMbfs();
+          this._loadTasks();
+          this._loadTargets();
 
-        }  
+        }
+
+          private _loadMbfs(): void {
+            // register some loaders
+            BaThemePreloader.registerLoader( this._aaaSharedMbfsCategoryService.fetchAllMbfs() );
+          }
+
+          private _loadTasks(): void {
+            // register some loaders
+            BaThemePreloader.registerLoader( this._sharedTasksMbfService.fetchAllTasks() );
+          }
+
+          private _loadTargets(): void {
+            // register some loaders
+            BaThemePreloader.registerLoader( this._newSharedTargetsTaskService.fetchAllTargets() );
+          }
+
+
 
 }
 
