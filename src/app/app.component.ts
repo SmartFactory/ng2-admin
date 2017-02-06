@@ -24,7 +24,7 @@ import 'style-loader!primeng/resources/themes/cupertino_fmp/theme.css';
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 
-import { AaaSharedMbfsCategoryService } from './services/aaa-shared-mbfs-category.service';
+import { SharedMbfsCategoryService } from './services/shared-mbfs-category.service';
 import { SharedTasksMbfService } from './services/shared-tasks-mbf.service';
 import { NewSharedTargetsTaskService } from './services/new-shared-targets-task.service';
 
@@ -53,13 +53,17 @@ export class App {
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private _aaaSharedMbfsCategoryService: AaaSharedMbfsCategoryService,
+              private _sharedMbfsCategoryService: SharedMbfsCategoryService,
               private _sharedTasksMbfService: SharedTasksMbfService,
               private _newSharedTargetsTaskService: NewSharedTargetsTaskService) {
 
+    
+    
     this._loadImages();
+    
+      this._loadDataFMP();
 
-        this._loadDataFMP();
+
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       console.error("1 RECIBIO evento en SUBSCRIPCION (menu.isCollapsed) this.isMenuCollapsed="+this.isMenuCollapsed+"");
@@ -67,19 +71,7 @@ export class App {
       this.isMenuCollapsed = isCollapsed;
     });
   }
-      // constructor(private _state: GlobalState,
-      //             private _imageLoader: BaImageLoaderService,
-      //             private _spinner: BaThemeSpinner,
-      //             private viewContainerRef: ViewContainerRef) {
 
-      //   this._loadImages();
-
-      //   this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
-      //     console.error("1 RECIBIO evento en SUBSCRIPCION (menu.isCollapsed) this.isMenuCollapsed="+this.isMenuCollapsed+"");
-      //     console.error("2 RECIBIO evento en SUBSCRIPCION (menu.isCollapsed) isCollapsed="+isCollapsed+"");
-      //     this.isMenuCollapsed = isCollapsed;
-      //   });
-      // }
 
   public ngAfterViewInit(): void {
     // hide spinner once all loaders are completed
@@ -88,60 +80,37 @@ export class App {
     });
   }
 
+
+
   private _loadImages(): void {
     // register some loaders
     BaThemePreloader.registerLoader(this._imageLoader.load(layoutPaths.images.root + 'sky-bg.jpg'));
   }
 
 
-        private _loadDataFMP(): void {
+  private _loadDataFMP(): void {
+    // services to be preloaded before app starts
+    this._loadMbfs();
+    this._loadTasks();
+    this._loadTargets();
+  }
 
-          // services to be preloaded before app starts
-          this._loadMbfs();
-          this._loadTasks();
-          this._loadTargets();
 
-        }
+  private _loadMbfs(): void {
+    // register some loaders
+    BaThemePreloader.registerLoader( this._sharedMbfsCategoryService.fetchAllMbfs() );
+  }
 
-          private _loadMbfs(): void {
-            // register some loaders
-            BaThemePreloader.registerLoader( this._aaaSharedMbfsCategoryService.fetchAllMbfs() );
-          }
+  private _loadTasks(): void {
+    // register some loaders
+    BaThemePreloader.registerLoader( this._sharedTasksMbfService.fetchAllTasks() );
+  }
 
-          private _loadTasks(): void {
-            // register some loaders
-            BaThemePreloader.registerLoader( this._sharedTasksMbfService.fetchAllTasks() );
-          }
-
-          private _loadTargets(): void {
-            // register some loaders
-            BaThemePreloader.registerLoader( this._newSharedTargetsTaskService.fetchAllTargets() );
-          }
+  private _loadTargets(): void {
+    // register some loaders
+    BaThemePreloader.registerLoader( this._newSharedTargetsTaskService.fetchAllTargets() );
+  }
 
 
 
 }
-
-/*
-
-          import { SharedMbfsCategoryService } from '../../../../services/shared-mbfs-category.service';
-
-                    constructor(
-                      private _sharedMbfsCategoryService: SharedMbfsCategoryService
-                    ) { }
-
-                    ngOnInit() {
-                      console.warn("--> ngOnInit (getMbfs AND getTasks AND getTargets) PREVIAMENTE");                      
-                      
-                      this._sharedMbfsCategoryService.fetchSharedMbfArray();
-
-                    }
-
-                    get mbfs_n_tasks_n_targets_ready(): boolean {
-                      if( (this._sharedMbfsCategoryService.sharedMbfArray) ){
-                        return true;
-                      }
-                      return false;
-                    }
-
-*/

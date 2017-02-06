@@ -17,40 +17,18 @@ export class SharedTasksMbfService {
   constructor(private _taskService: TaskService) {}
 
 
-  fetchSharedTaskArray(): TaskModel[] {
 
-    // console.log("$$$ -->> " + "[TASKS] INI(si hay:DEVUELVE, si no hay:CONSULTA) fetchSharedTaskArray");
-    
-    if (!this.sharedTaskArray) {
+  fetchAllTasks(): Promise<any> {
 
-      console.log("$$$ -->> " + "[TASKS] IF(aun no hay) fetchSharedTaskArray");
+    console.error("$$$ -->> " + "fetchAllTasks [[INIT]]");
 
-      // console.log("getTasks LLAMADA 2");
+    return this._taskService
+        .getTasks()
+        .then((data) => {
+          console.error("$$$ -->> " + "fetchAllTasks [[GOT_data RETURNING_promise]]");
+          this.sharedTaskArray = data;
+        });
 
-      this._taskService
-          .getTasks()
-          .then((data) => {
-            this.sharedTaskArray = data;
-          });   
-    }else{
-      console.log("$$$ -->> " + "[TASKS] ELSE(ya habia) fetchSharedTaskArray");
-    }
-
-    return this.sharedTaskArray;
   }
-
-
-        fetchAllTasks(): Promise<any> {
-
-          console.error("$$$ -->> " + "fetchAllTasks [[INIT]]");
-
-          return this._taskService
-              .getTasks()
-              .then((data) => {
-                console.error("$$$ -->> " + "fetchAllTasks [[GOT_data RETURNING_promise]]");
-                this.sharedTaskArray = data;
-              });
-
-        }
 
 }

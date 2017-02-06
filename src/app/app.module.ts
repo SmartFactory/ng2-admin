@@ -18,7 +18,7 @@ import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
 
-  import { AaaSharedMbfsCategoryService } from './services/aaa-shared-mbfs-category.service';
+  import { SharedMbfsCategoryService } from './services/shared-mbfs-category.service';
   import { MbfService } from './services/mbf.service';
     import { SharedTasksMbfService } from './services/shared-tasks-mbf.service';
     import { TaskService } from './services/task.service';
@@ -30,7 +30,7 @@ const APP_PROVIDERS = [
   AppState,
   GlobalState,
 
-    AaaSharedMbfsCategoryService,
+    SharedMbfsCategoryService,
     MbfService,
       SharedTasksMbfService,
       TaskService,

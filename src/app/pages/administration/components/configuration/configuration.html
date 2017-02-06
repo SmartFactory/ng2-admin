@@ -4,29 +4,66 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       
       <p-tabView>
-          <p-tabPanel header="Offices, Teams & Users">
-              <officezz-component></officezz-component>
-          </p-tabPanel>               
 
-          <p-tabPanel header="Targets & MBFs">
+          <p-tabPanel header="mbfs-category">
 
-            <!--<categoryzz-component *ngIf="mbfs_n_tasks_n_targets_ready"></categoryzz-component>-->
+            <mbfs-category
+              #mbfsCat
+              [categoryId]="'1'">
 
-            <!--<categoryzz-component *ngIf="tasks_n_targets_ready"></categoryzz-component>-->
-             
-            <!--<categoryzz-component *ngIf="teztTEZT_targetsReady"></categoryzz-component>-->
+                Probando-Contenido-Interno 222
+                <br>
 
-            <categoryzz-component></categoryzz-component>
+
+                  <p-accordion>
+                      <p-accordionTab *ngFor="let mbf of mbfsCat.mbfs"
+                        [header]="mbf.name">
+
+                          NuNu_(mbf.name)::: {{mbf.name}}
+                          <hr>
+                            <mbf [mbf]="mbf">
+                              aaa ..
+                              
+                              Creo que es mejor usando SERVICIO COMPARTIDO, o quizas PIPEs o DIRECTIVEs
+
+                            </mbf>
+                          <hr>
+                      </p-accordionTab>
+                  </p-accordion>
+
+
+                <!--<div *ngFor="let mbf of mbfsCat.mbfs">
+                  <hr>
+                  <hr>
+                  mbf == {{mbf | json}}
+                  <hr>
+
+                    <mbf [mbf]="mbf">
+                      aaa ..
+                      
+                      Creo que es mejor usando SERVICIO COMPARTIDO, o quizas PIPEs o DIRECTIVEs
+
+                    </mbf>
+
+                  <hr>
+                  <hr>
+                </div>-->
+
+
+
+                    <!--<mbf *ngFor="let mbf of mbfsCat.mbfs">aaa</mbf>-->
+                      <!--<mbf *ngFor="let mbf of mbfs">aaa</mbf>-->
+                        <!--<mbf [mbfs]="mbfs" *ngFor="let mbf of mbfs">aaa</mbf>-->
+              
+            </mbfs-category>
 
           </p-tabPanel>
 
-          <p-tabPanel header="Goals">
-              <goalzz-component></goalzz-component>
+          <p-tabPanel header="Configuration TAB-B">
+            Configuration TAB-B
           </p-tabPanel>
 
-          <p-tabPanel header="Plan Types">
-              <planTypezz-component></planTypezz-component>
-          </p-tabPanel>          
+
       </p-tabView>
     </div>
   </div>

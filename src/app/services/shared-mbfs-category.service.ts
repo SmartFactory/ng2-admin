@@ -17,26 +17,17 @@ export class SharedMbfsCategoryService {
   constructor(private _mbfService: MbfService) {}
 
 
-  fetchSharedMbfArray(): MbfModel[] {
+  fetchAllMbfs(): Promise<any> {
 
-    // console.log("$$$ -->> " + "[MBFS] INI(si hay:DEVUELVE, si no hay:CONSULTA) fetchSharedMbfArray");
-    
-    if (!this.sharedMbfArray) {
+    console.error("$$$ -->> " + "fetchAllMbfs [[INIT]]");
 
-      console.log("$$$ -->> " + "[MBFS] IF(aun no hay) fetchSharedMbfArray");
-
-      // console.log("getMbfs LLAMADA 2");
-
-      this._mbfService
+    return this._mbfService
           .getMbfs()
           .then((data) => {
+            console.error("$$$ -->> " + "fetchAllMbfs [[GOT_data RETURNING_promise]]");
             this.sharedMbfArray = data;
-          });   
-    }else{
-      console.log("$$$ -->> " + "[MBFS] ELSE(ya habia) fetchSharedMbfArray");
-    }
+          });  
 
-    return this.sharedMbfArray;
   }
 
 
