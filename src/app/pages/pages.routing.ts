@@ -27,11 +27,13 @@ export const routes: Routes = [
       { path: 'test', loadChildren: 'app/pages/test/test.module#TestModule' },
         // { path: 'test', loadChildren: 'app/pages/test/test.module' },       //NOTA: Si se usa DEFAULT, en el ROUTING no se puede indicar la clase, sino que se debe dejar vacia y viceversa ... { path: 'test', loadChildren: 'app/pages/test/test.module#TestModule' },
 
-      { path: 'administration', loadChildren: 'app/pages/administration/administration.module#AdministrationModule' }
+      { path: 'administration', loadChildren: 'app/pages/administration/administration.module#AdministrationModule' },
         // { path: 'administration', loadChildren: () => System.import('./administration/administration.module') }
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+      { path: 'animales', loadChildren: 'app/pages/animales/animales.module#AnimalesModule' },
+
     ]
   }
 ];

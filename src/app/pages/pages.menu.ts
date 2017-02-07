@@ -15,6 +15,18 @@ export const PAGES_MENU = [
         }
       },
       {
+        path: 'animales',
+        data: {
+          menu: {
+            title: 'animales',
+            icon: 'ion-log-in',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
         path: 'test',
         data: {
           menu: {
@@ -25,7 +37,7 @@ export const PAGES_MENU = [
             order: 0
           }
         }
-      },
+      },      
 
       {
         path: 'administration',
