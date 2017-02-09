@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 
     import { AnimalHttpService } from '../../services/animal-http.service';
 
-
-export class Animal {
-  constructor(public id: string, public name: string) { }
-    //constructor(public id: number, public name: string) { }
-}
+import { AnimalModel } from '../../models/animal';
+    // export class AnimalModel {
+    //   constructor(public id: string, public name: string) { }
+    //     //constructor(public id: number, public name: string) { }
+    // }
 
 
 // let ANIMALES = [
-//   new Animal(11, 'ANIMAL==Mr. Nice'),
-//   new Animal(12, 'ANIMAL==Narco'),
-//   new Animal(13, 'ANIMAL==Bombasto'),
-//   new Animal(14, 'ANIMAL==Celeritas'),
-//   new Animal(15, 'ANIMAL==Magneta'),
-//   new Animal(16, 'ANIMAL==RubberMan')
+//   new AnimalModel(11, 'ANIMAL==Mr. Nice'),
+//   new AnimalModel(12, 'ANIMAL==Narco'),
+//   new AnimalModel(13, 'ANIMAL==Bombasto'),
+//   new AnimalModel(14, 'ANIMAL==Celeritas'),
+//   new AnimalModel(15, 'ANIMAL==Magneta'),
+//   new AnimalModel(16, 'ANIMAL==RubberMan')
 // ];
 
 
@@ -26,11 +26,11 @@ export class Animal {
 export class AnimalService {
 
 
-  animalesPromise2: Promise<Animal[]>;
+  animalesPromise2: Promise<AnimalModel[]>;
   
 
 
-constructor(private _animalHttpService: AnimalHttpService) {}
+  constructor(private _animalHttpService: AnimalHttpService) { }
 
 
 
@@ -58,32 +58,34 @@ constructor(private _animalHttpService: AnimalHttpService) {}
 
 
 
-  getAnimal(id: number | string) {
+  getAnimal(id: string) {
 
     console.warn("<<<=__-__=>>>" + " AnimalService -->> 2 <<-- getAnimal");
 
     this.ensureThat_AnimalesPromise_IsDefined();
 
-    this.animalesPromise2
-      .then(animales => {
-        console.warn('animales');
-        console.warn(animales);
-        console.warn('id');
-        console.warn(id);
-        console.warn('id');
-        console.warn(id+"");
+    // this.animalesPromise2
+    //   .then(animales => {
+    //     console.warn('animales');
+    //     console.warn(animales);
+    //     console.warn('id');
+    //     console.warn(id);
+    //     console.warn('id');
+    //     console.warn(id+"");
         
-        animales.find(animal => animal.id == id+"")
+    //     animales.find(animal => animal.id == id+"")
 
-        // animales.find(animal => animal.id === +id)
+    //     // animales.find(animal => animal.id === +id)
 
-      });
+    //   });
 
 
     return this.animalesPromise2
-      .then(animales => animales.find(animal => animal.id === id+""));
-    // return this.animalesPromise2
-    //   .then(animales => animales.find(animal => animal.id === +id));
+      .then(animales => animales.find(animal => animal.id === id));
+      // return this.animalesPromise2
+      //   .then(animales => animales.find(animal => animal.id === id+""));
+        // return this.animalesPromise2
+        //   .then(animales => animales.find(animal => animal.id === +id));
 
 
 
@@ -146,7 +148,7 @@ constructor(private _animalHttpService: AnimalHttpService) {}
                 //     .then((data) => {
                 //       console.error("$$$ -->> " + "fetchAllTargets [[GOT_data RETURNING_promise]]");
         
-                //               // this.animalesPromise2 = data as Animal[];
+                //               // this.animalesPromise2 = data as AnimalModel[];
 
                 //               // this.animalesPromise2 = Promise.resolve(ANIMALES);
 

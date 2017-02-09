@@ -6,15 +6,20 @@ import { NgaModule } from '../../theme/nga.module';
 import { routing }       from './animales.routing';
 
 import { AnimalesComponent } from './animales.component';
+
   import { AnimalesListaComponent } from './components/animales-lista/animales-lista.component';
   import { AnimalComponent } from './components/animal/animal.component';
-    
     import { AnimalService }  from './animal.service';
 import { AnimalHttpService } from '../../services/animal-http.service';
 
-      import { HijosListaComponent } from './components/hijos-lista/hijos-lista.component';
-        import { HijoService }  from './hijo.service';
+  import { HijosListaComponent } from './components/hijos-lista/hijos-lista.component';
+    // import { HijoService }  from './hijo.service';     //  NOTA: probando compartir servicio solo para cada ANIMAL
+import { HijoHttpService } from '../../services/hijo-http.service';
 
+
+import { AnimalPageComponent } from './components/animal/animal-page.component';
+
+import { HijoComponent } from './components/hijo/hijo.component';
 
 @NgModule({
   imports: [
@@ -28,13 +33,20 @@ import { AnimalHttpService } from '../../services/animal-http.service';
       AnimalesListaComponent,
       AnimalComponent,
 
-        HijosListaComponent
+        HijosListaComponent,
+
+AnimalPageComponent,
+
+HijoComponent
+
   ],
   providers: [
     AnimalService,
 AnimalHttpService,
 
-      HijoService
+    // HijoService,
+HijoHttpService
+
   ]
 })
 export class AnimalesModule {}

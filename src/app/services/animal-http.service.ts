@@ -8,13 +8,12 @@ import 'rxjs/add/operator/toPromise';
 import { URLServicesEndpoints, JSONheaders } from './a-services-global-constants';
 
 
-    //import { AnimalModel } from '../models/animal';
-
-    export class AnimalModel {
+import { AnimalModel } from '../models/animal';
+    // export class AnimalModel {
         
-      constructor(public id: string, public name: string) { }
-        // constructor(public id: number, public name: string) { }
-    }
+    //   constructor(public id: string, public name: string) { }
+    //     // constructor(public id: number, public name: string) { }
+    // }
 
 
 @Injectable()

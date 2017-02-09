@@ -6,8 +6,9 @@ import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Hijo, HijoService }  from '../../hijo.service';
-
+import { HijoService }  from '../../hijo.service';
+  import { HijoModel } from '../../../../models/hijo';
+    // import { Hijo, HijoService }  from '../../hijo.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ import { Hijo, HijoService }  from '../../hijo.service';
       </li>
     </ul>
     
-    <button routerLink="/pages/administration/plan">Go to /pages/administration/plan</button>
+    <!--button routerLink="/pages/administration/plan">Go to /pages/administration/plan</button-->
 
   `
 })
@@ -32,9 +33,10 @@ import { Hijo, HijoService }  from '../../hijo.service';
 export class HijosListaComponent implements OnInit {
 
 
-  hijos: Observable<Hijo[]>;
+  hijos: Observable<HijoModel[]>;
 
-  private selectedId: number;
+  private selectedId: string;
+    // private selectedId: number;
 
   constructor(
     private service: HijoService,
@@ -48,19 +50,26 @@ export class HijosListaComponent implements OnInit {
 
     this.hijos = this.route.params
       .switchMap((params: Params) => {
-        this.selectedId = +params['id'];
-        return this.service.getHijos();
+        this.selectedId = params['id'];
+          // this.selectedId = +params['id'];
+
+        return this.service.getHijos( params['id'] );
+          //return this.service.getHijos();
+
       });
   }
 
-  isSelected(hijo: Hijo) { return hijo.id === this.selectedId; }
+  isSelected(hijo: HijoModel) { return hijo.id === this.selectedId; }
 
-  onSelect(hijo: Hijo) {
+  onSelect(hijo: HijoModel) {
     console.log('hijo.id='+hijo.id);
     console.log('this.router.url='+this.router.url);
 
         // Navigate with relative link
-        this.router.navigate(['../hijo', hijo.id], { relativeTo: this.route }); // regresa (../) por que esta en la LISTA que es un hiijo  con PATH VACIO ('')
+        this.router.navigate(['hijos', hijo.id], { relativeTo: this.route }); // regresa (../) por que esta en la LISTA que es un hiijo  con PATH VACIO ('')
+        
+        // // Navigate with relative link
+        // this.router.navigate(['../hijo', hijo.id], { relativeTo: this.route }); // regresa (../) por que esta en la LISTA que es un hiijo  con PATH VACIO ('')
 
         //this.router.navigate(['pages/hijos/hijo', hijo.id]);    // OJO !! NOTA: OTRA MANERA de hacerlo, SIN USAR RELATIVE PATHS
 

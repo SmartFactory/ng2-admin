@@ -6,8 +6,9 @@ import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Animal, AnimalService }  from '../../animal.service';
-
+import { AnimalService }  from '../../animal.service';
+  import { AnimalModel } from '../../../../models/animal';
+    // import { Animal, AnimalService }  from '../../animal.service';
 
 
 @Component({
@@ -56,7 +57,7 @@ export class AnimalesListaComponent implements OnInit {
 
 //((((((((()))))))))
 //((((((((()))))))))
-  animales: Observable<Animal[]>;
+  animales: Observable<AnimalModel[]>;
 
   private selectedId: string;
     //private selectedId: number;
@@ -81,14 +82,17 @@ export class AnimalesListaComponent implements OnInit {
       });
   }
 
-  isSelected(animal: Animal) { return animal.id === this.selectedId; }
+  isSelected(animal: AnimalModel) { return animal.id === this.selectedId; }
 
-  onSelect(animal: Animal) {
+  onSelect(animal: AnimalModel) {
     console.log('animal.id='+animal.id);
     console.log('this.router.url='+this.router.url);
 
         // Navigate with relative link
-        this.router.navigate(['../animal', animal.id], { relativeTo: this.route }); // regresa (../) por que esta en la LISTA que es un hijo con PATH VACIO ('')
+        this.router.navigate(['../', animal.id], { relativeTo: this.route }); // regresa (../) por que esta en la LISTA que es un hijo con PATH VACIO ('')
+
+        // // Navigate with relative link
+        // this.router.navigate(['../animal', animal.id], { relativeTo: this.route }); // regresa (../) por que esta en la LISTA que es un hijo con PATH VACIO ('')
 
         //this.router.navigate(['pages/animales/animal', animal.id]);    // OJO !! NOTA: OTRA MANERA de hacerlo, SIN USAR RELATIVE PATHS
 

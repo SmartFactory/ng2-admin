@@ -8,6 +8,10 @@ import { AnimalesComponent } from './animales.component';
 
     import { HijosListaComponent } from './components/hijos-lista/hijos-lista.component';
 
+import { AnimalPageComponent } from './components/animal/animal-page.component';
+
+import { HijoComponent } from './components/hijo/hijo.component';
+
 
 
 // noinspection TypeScriptValidateTypes
@@ -21,19 +25,46 @@ export const routes: Routes = [
         component: AnimalesListaComponent
       },
       {
-        path: 'animal/:id',
-        component: AnimalComponent,
+        path: ':id',
+        component: AnimalPageComponent,
         children: [
           {
-            path: 'hijos-lista',
-            component: HijosListaComponent
+            path: '',
+            component: AnimalComponent
           },
-          // {
-          //   path: 'animal/:id',
-          //   component: AnimalComponent
-          // }
+            {
+              path: 'hijos/:id',
+              component: HijoComponent
+            },
         ]
-      }
+      },
+          
+          // {
+          //   path: ':id',
+          //   component: AnimalComponent,
+          //   children: [
+          //         // path: 'animal/:id',
+          //         // component: AnimalComponent,
+          //         // children: [
+
+          //     // {
+          //     //   path: 'hijos/:id',
+          //     //   component: HijosListaComponent
+          //     // },
+          //         // {
+          //         //   path: 'hijos-lista',
+          //         //   component: HijosListaComponent
+          //         // },
+          //         // {
+          //         //   path: 'animal/:id',
+          //         //   component: AnimalComponent
+          //         // }
+          //   ]
+          // },
+          // // {
+          // //   path: ':id/hijos/:id',
+          // //   component: HijosListaComponent
+          // // },
     ]
       // children: [
       //   //{ path: 'treeview', component: TreeViewComponent }

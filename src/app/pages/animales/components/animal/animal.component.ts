@@ -3,7 +3,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Animal, AnimalService }  from '../../animal.service';
+import { AnimalService }  from '../../animal.service';
+  import { AnimalModel } from '../../../../models/animal';
+    // import { Animal, AnimalService }  from '../../animal.service';
+
+//__%&% import { HijoService }  from '../../hijo.service';
 
 
 @Component({
@@ -22,9 +26,6 @@ import { Animal, AnimalService }  from '../../animal.service';
             <label>Name: </label>
             <input [(ngModel)]="animal.name" placeholder="name"/>
           </div>
-          <p>
-            <button (click)="gotoAnimalesLista()">Back</button>
-          </p>
           
           <hr>
             <h4>VIEW hijos-lista</h4>
@@ -37,7 +38,14 @@ import { Animal, AnimalService }  from '../../animal.service';
           <hr>
 
     </div>
-  `
+    
+    <p>
+      <button (click)="gotoAnimalesLista()">gotoAnimalesLista</button>
+    </p>
+  `,
+  providers: [
+//__%&%     HijoService
+  ]
 })
 
 export class AnimalComponent implements OnInit {
@@ -46,7 +54,7 @@ export class AnimalComponent implements OnInit {
 
 //((((((((()))))))))
 //((((((((()))))))))
-  animal: Animal;
+  animal: AnimalModel;
 
 
   constructor(
@@ -60,22 +68,35 @@ export class AnimalComponent implements OnInit {
     console.warn("<<<===>>>" + " ngOnInit --> 3 <--  AnimalComponent -- ngOnInit");
 
     this.route.params
-      // (+) converts string 'id' to a number
-      .switchMap((params: Params) => this.service.getAnimal(+params['id']))
-      .subscribe((animal: Animal) => this.animal = animal);
+      .switchMap((params: Params) => this.service.getAnimal(params['id']))
+      .subscribe((animal: AnimalModel) => this.animal = animal);
+          // this.route.params
+          //   // (+) converts string 'id' to a number
+          //   .switchMap((params: Params) => this.service.getAnimal(+params['id']))
+          //   .subscribe((animal: AnimalModel) => this.animal = animal);
 
   }
 
   gotoAnimalesLista() {
     let animalId = this.animal ? this.animal.id : null;
 
-    console.log('animalId='+animalId);
-    console.log('this.router.url='+this.router.url);
+    console.log('AA animalId='+animalId);
+    console.log('this.router='+this.router);
+    console.log(this.router);  
 
-    console.log('this.route.url='+this.route.url); 
-    console.log(this.route.url);    
+    console.log('this.route='+this.route); 
+    console.log(this.route);    
 
-this.router.navigate(['../../'], { relativeTo: this.route }); // regresa al papa (../../), lo que forzara que se recargue la LISTA,   por que esta en el ID del HIJO  con PATH ( animales/animal/id ) 
+         this.router.navigate(['../../../'], { relativeTo: this.route }); // regresa al papa (../../), lo que forzara que se recargue la LISTA,   por que esta en el ID del HIJO  con PATH ( animales/animal/id ) 
+
+
+        // this.router.navigate(['../../'], { relativeTo: this.route }); // regresa al papa (../../), lo que forzara que se recargue la LISTA,   por que esta en el ID del HIJO  con PATH ( animales/animal/id ) 
+
+
+// this.router.navigate(['../'], { relativeTo: this.route }); // regresa al papa (../../), lo que forzara que se recargue la LISTA,   por que esta en el ID del HIJO  con PATH ( animales/animal/id ) 
+
+// this.router.navigate(['../../'], { relativeTo: this.route }); // regresa al papa (../../), lo que forzara que se recargue la LISTA,   por que esta en el ID del HIJO  con PATH ( animales/animal/id ) 
+
 
 //this.router.navigate(['pages/animales']);    // OJO !! NOTA: OTRA MANERA de hacerlo, SIN USAR RELATIVE PATHS
 

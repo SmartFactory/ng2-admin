@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 
+    import { HijoHttpService } from '../../services/hijo-http.service';
 
-export class Hijo {
-  constructor(public id: number, public name: string) { }
-}
+import { HijoModel } from '../../models/hijo';
+  // export class Hijo {
+  //   constructor(public id: number, public name: string) { }
+  // }
 
 
-let HIJOS = [
-  new Hijo(11, 'HIJO==Mr. Nice'),
-  new Hijo(12, 'HIJO==Narco'),
-  new Hijo(13, 'HIJO==Bombasto'),
-  new Hijo(14, 'HIJO==Celeritas'),
-  new Hijo(15, 'HIJO==Magneta'),
-  new Hijo(16, 'HIJO==RubberMan')
-];
+// let HIJOS = [
+//   new HijoModel('11', '1', 'HIJO==Mr. Nice'),
+//   new HijoModel('12', '1', 'HIJO==Narco'),
+//   new HijoModel('13', '1', 'HIJO==Bombasto'),
+//   new HijoModel('14', '1', 'HIJO==Celeritas'),
+//   new HijoModel('15', '1', 'HIJO==Magneta'),
+//   new HijoModel('16', '1', 'HIJO==RubberMan')
+// ];
 
 
 //let hijosPromise = Promise.resolve(HIJOS);
@@ -23,15 +25,18 @@ let HIJOS = [
 export class HijoService {
 
 
-  hijosPromise2: Promise<Hijo[]>;
+  hijosPromise2: Promise<HijoModel[]>;
   
 
+  constructor(private _hijosHttpService: HijoHttpService) { }
 
-  getHijos() {
+
+
+  getHijos( animalId: string ) {
     
     console.warn("<<<=__-__=>>>" + " HijoService -->> 1 <<-- getHijos");
 
-    this.ensureThat_HijosPromise_IsDefined();
+    this.ensureThat_HijosPromise_IsDefined(animalId);
 
     return this.hijosPromise2;
 
@@ -50,14 +55,16 @@ export class HijoService {
 
 
 
-  getHijo(id: number | string) {
+  getHijo(id: string, animalId: string ) {
 
     console.warn("<<<=__-__=>>>" + " HijoService -->> 2 <<-- getHijo");
 
-    this.ensureThat_HijosPromise_IsDefined();
+    this.ensureThat_HijosPromise_IsDefined(animalId);
 
     return this.hijosPromise2
-      .then(hijos => hijos.find(hijo => hijo.id === +id));
+      .then(hijos => hijos.find(hijo => hijo.id === id));
+        // return this.hijosPromise2
+        //   .then(hijos => hijos.find(hijo => hijo.id === +id));
 
 
     // console.error('chusma:: ' + 'BBB_111  this.hijosPromise2='); 
@@ -98,7 +105,7 @@ export class HijoService {
 
 
 
-  ensureThat_HijosPromise_IsDefined(): void {
+  ensureThat_HijosPromise_IsDefined( animalId: string ): void {
     //getHijosPromise2_ifIsUndefinded() {
     
     console.warn("()" + "ensureThat_HijosPromise_IsDefined");
@@ -107,7 +114,16 @@ export class HijoService {
       
       console.warn("()" + "NO_EXISTIA, GENERANDO--DEFINICION");
 
-      this.hijosPromise2 = Promise.resolve(HIJOS);
+
+      this.hijosPromise2 = this._hijosHttpService
+            .getHijosAnimal(animalId);
+
+          // this.hijosPromise2 = this._hijosHttpService
+          //       .getHijos(); 
+      
+        // this.hijosPromise2 = Promise.resolve(HIJOS);
+
+                  
     }
 
               // console.warn('QQQ  this.hijosPromise2=');
